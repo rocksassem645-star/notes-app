@@ -8,12 +8,12 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 const db = mysql.createConnection({
-  host: "localhost",
-  port: 3306,
-  user: "root",
-  password: "",
-  database: "notes-app",
-});
+  host: process.env.DB_HOST || 'localhost',
+  port: process.env.DB_PORT || 3306,
+  user: process.env.DB_USER || 'root',
+  password: process.env.DB_PASSWORD || '',
+  database: process.env.DB_NAME || 'notes-app'
+})
 
 db.connect((err) => {
   if (err) {
